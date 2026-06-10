@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="Assets/favicon/GGlGioGio.jpg">
+  <title>Precision | Engineering Excellence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="#home" class="logo">PRECISION</a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#home" class="nav-link active">Home</a></li>
+    <li><a href="#models" class="nav-link">Models</a></li>
+    <li><a href="#performance" class="nav-link">Performance</a></li>
+    <li><a href="#heritage" class="nav-link">Heritage</a></li>
+    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+    <li><a href="#contact" class="nav-link">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Book a Drive</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-media">
+    <img src="Assets/images/Porsche_Cayman_GT4_RS_2022_Drive.jpg" alt="Porsche 911" class="hero-img">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Engineering Excellence Since 1948</span>
+    <h1 class="hero-headline">DRIVEN BY<br>PRECISION</h1>
+    <p class="hero-sub">Every curve engineered to perfection. Every drive a statement.</p>
+    <div class="hero-actions">
+      <a href="#models" class="btn-primary">Explore Models</a>
+      <a href="#heritage" class="btn-ghost">Our Heritage</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<section class="stats-strip">
+  <div class="stat-item">
+    <span class="stat-num">3.4<small>s</small></span>
+    <span class="stat-label">0–100 km/h</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">500<small>hp</small></span>
+    <span class="stat-label">Peak Output</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">315<small>km/h</small></span>
+    <span class="stat-label">Top Speed</span>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <span class="stat-num">75<small>yr</small></span>
+    <span class="stat-label">Of Innovation</span>
+  </div>
+</section>
+
+<section class="models-section" id="models">
+  <div class="section-header">
+    <span class="section-eyebrow">Our Lineup</span>
+    <h2 class="section-title">THE MODELS</h2>
+    <p class="section-desc">From iconic sports cars to electrified masterpieces - each model a testament to engineering mastery.</p>
+  </div>
+
+  <div class="coverflow-scene" id="covScene">
+    <div class="coverflow-stage" id="covStage">
+
+      <div class="cov-card" data-index="0" data-model="Panamera Turbo S E-Hybrid">
+        <div class="cov-card-inner">
+          <div class="cov-img-wrap">
+            <img src="Assets/images/2025_Porsche_Panamera_Turbo_S_E-Hybrid/2025_Porsche_Panamera_Turbo_S_E-Hybrid_Front.jpg" alt="Panamera Turbo S E-Hybrid">
+            <div class="cov-badge">Iconic</div>
+          </div>
+          <div class="cov-info">
+            <span class="cov-cat">Gran Turismo</span>
+            <h3 class="cov-name">Panamera Turbo S E-Hybrid</h3>
+            <p class="cov-tagline">The Peak of Luxury and Performance</p>
+            <div class="cov-specs">
+              <div class="cov-spec"><strong>2.9s</strong><span>0–100</span></div>
+              <div class="cov-spec"><strong>782hp</strong><span>Power</span></div>
+              <div class="cov-spec"><strong>325</strong><span>km/h</span></div>
+            </div>
+            <button class="cov-details-btn" data-model="Panamera Turbo S E-Hybrid">View Details</button>
+          </div>
+        </div>
+        <div class="cov-reflection"></div>
+      </div>
+
+      <div class="cov-card" data-index="1" data-model="Taycan Turbo S">
+        <div class="cov-card-inner">
+          <div class="cov-img-wrap">
+            <img src="Assets/images/2024_Porsche_Taycan_Turbo_S_2024/2024_Porsche_Taycan_Turbo_S_Front.jpg" alt="Taycan Turbo S">
+            <div class="cov-badge electric">Electric</div>
+          </div>
+          <div class="cov-info">
+            <span class="cov-cat">Electric Sports Car</span>
+            <h3 class="cov-name">Taycan Turbo S</h3>
+            <p class="cov-tagline">Soul, electrified. 100% Porsche DNA.</p>
+            <div class="cov-specs">
+              <div class="cov-spec"><strong>2.6s</strong><span>0–100</span></div>
+              <div class="cov-spec"><strong>760hp</strong><span>Power</span></div>
+              <div class="cov-spec"><strong>260</strong><span>km/h</span></div>
+            </div>
+            <button class="cov-details-btn" data-model="Taycan Turbo S">View Details</button>
+          </div>
+        </div>
+        <div class="cov-reflection"></div>
+      </div>
+
+    </div>
+
+    <button class="cov-nav-btn cov-prev" id="covPrev" aria-label="Previous model">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="cov-nav-btn cov-next" id="covNext" aria-label="Next model">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="cov-pagination" id="covPagination"></div>
+</section>
+
+<section class="performance-section" id="performance">
+  <div class="perf-bg">
+    <img src="Assets/images/2025_Porsche_911_GT3_(992.2)_Front.jpg" alt="Performance" class="perf-bg-img">
+    <div class="perf-overlay"></div>
+  </div>
+  <div class="perf-content">
+    <span class="section-eyebrow light">Track Dominance</span>
+    <h2 class="perf-title">ENGINEERED<br>TO EXCEL</h2>
+    <p class="perf-desc">Decades of motorsport knowledge distilled into every component. From Nürburgring lap records to everyday exhilaration - performance is in our DNA.</p>
+    <div class="perf-features">
+      <div class="perf-feature">
+        <div class="perf-icon">&#9651;</div>
+        <div>
+          <strong>Active Aerodynamics</strong>
+          <p>Adaptive spoilers and diffusers respond to speed in real time for optimal downforce.</p>
+        </div>
+      </div>
+      <div class="perf-feature">
+        <div class="perf-icon">&#9675;</div>
+        <div>
+          <strong>PASM Suspension</strong>
+          <p>Porsche Active Suspension Management continuously adjusts damper forces to road conditions.</p>
+        </div>
+      </div>
+      <div class="perf-feature">
+        <div class="perf-icon">&#9632;</div>
+        <div>
+          <strong>PDK Transmission</strong>
+          <p>7-speed dual-clutch gearbox delivers gear changes faster than the blink of an eye.</p>
+        </div>
+      </div>
+    </div>
+    <a href="#contact" class="btn-primary">Experience It Now</a>
+  </div>
+</section>
+
+<section class="heritage-section" id="heritage">
+  <div class="heritage-grid">
+    <div class="heritage-media">
+      <img src="" alt="Heritage">
+    </div>
+    <div class="heritage-content">
+      <span class="section-eyebrow">Our Story</span>
+      <h2 class="section-title">A LEGACY OF<br>EXCELLENCE</h2>
+      <p>Since Ferdinand Porsche founded the company in 1948, we have relentlessly pursued one goal: to build the world's most purposeful sports cars. Every model carries the weight of that ambition - and the joy of surpassing it.</p>
+      <div class="heritage-milestones">
+        <div class="milestone">
+          <span class="milestone-year">1948</span>
+          <span class="milestone-text">First Porsche 356 rolls out of a makeshift workshop in Gmünd, Austria.</span>
+        </div>
+        <div class="milestone">
+          <span class="milestone-year">1963</span>
+          <span class="milestone-text">The 911 debuts at the Frankfurt Motor Show - an icon is born.</span>
+        </div>
+        <div class="milestone">
+          <span class="milestone-year">1973</span>
+          <span class="milestone-text">The 911 Carrera RS 2.7 sets the benchmark for lightweight sports cars.</span>
+        </div>
+        <div class="milestone">
+          <span class="milestone-year">2019</span>
+          <span class="milestone-text">The Taycan launches - Porsche's bold leap into an electric future.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section" id="gallery">
+  <div class="section-header">
+    <span class="section-eyebrow">Visual Stories</span>
+    <h2 class="section-title">GALLERY</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item tall">
+      <img src="Assets/images/Porsche_Headquarters.jpg" alt="Porsche Headquarters">
+    </div>
+    <div class="gallery-item">
+      <img src="Assets/images/Porsche_Cars_Timeline.jpg" alt="Porsche Cars Timeline">
+    </div>
+    <div class="gallery-item">
+      <img src="Assets/images/Porsche_History.jpg" alt="Porsche History">
+    </div>
+    <div class="gallery-item wide">
+      <img src="Assets/images/2024_Porsche_Taycan_Turbo_S_From_Right.png" alt="Ferdinand Alexander">
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <span class="section-eyebrow light">Get Behind the Wheel</span>
+      <h2 class="contact-title">BOOK A<br>TEST DRIVE</h2>
+      <p>The only way to truly understand a Porsche is to drive one. Reserve your experience at one of our performance centers.</p>
+      <div class="contact-details">
+        <div class="contact-detail-item">
+          <span class="detail-label">Phone</span>
+          <span>+1 800 PORSCHE</span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="detail-label">Email</span>
+          <span>experience@precision-motors.com</span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="detail-label">Hours</span>
+          <span>Mon–Sat, 9am–7pm</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <div class="form-field">
+            <label>First Name</label>
+            <input type="text" placeholder="John" required>
+          </div>
+          <div class="form-field">
+            <label>Last Name</label>
+            <input type="text" placeholder="Doe" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@example.com" required>
+        </div>
+        <div class="form-field">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+1 (555) 000-0000">
+        </div>
+        <div class="form-field">
+          <label>Preferred Model</label>
+          <select>
+            <option value="" disabled selected>Select a model</option>
+            <option>911 Carrera</option>
+            <option>Taycan Turbo S</option>
+            <option>Cayenne Turbo</option>
+            <option>Panamera 4S</option>
+            <option>718 Cayman GT4</option>
+            <option>Macan Electric</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Preferred Date</label>
+          <input type="date">
+        </div>
+        <div class="form-field">
+          <label>Message (Optional)</label>
+          <textarea placeholder="Tell us anything special about your visit..." rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn-primary full-width">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">PRECISION</div>
+      <p>Engineering Excellence Since 1948.<br>Where performance meets purpose.</p>
+    </div>
+    <div class="footer-links">
+
+      <div class="footer-col">
+        <span class="footer-col-title">Company</span>
+        <a href="#heritage">Heritage</a>
+        <a href="#performance">Performance</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <span class="footer-col-title">Follow</span>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter / X</a>
+        <a href="#">YouTube</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Precision Motors. All rights reserved.</p>
+    <div class="footer-legal">
+       <!-- <button class="cov-details-btn" data-model="Panamera Turbo S E-Hybrid">View Details</button> -->
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast">Booking confirmed! We'll be in touch shortly.</div>
+
+<script src="js/data.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/form.js"></script>
+<script src="js/reveal.js"></script>
+<script src="js/carousel.js"></script>
+</body>
+</html>
