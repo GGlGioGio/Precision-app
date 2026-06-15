@@ -1,0 +1,211 @@
+@media (max-width: 1024px) {
+  .mdp-overview {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 4rem 0;
+  }
+
+  .mdp-specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mdp-thumbs {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+   .mdp-hero {
+    position: relative;
+    height: auto !important;
+    min-height: initial;
+    display: block; 
+    background: var(--black);
+  }
+
+  .mdp-hero-track {
+    position: relative;
+    width: 100%;
+  }
+
+  .mdp-hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 5% 1rem;
+  }
+
+  .mdp-hero-controls {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .mdp-hero-slide img {
+    width: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .mdp-key-specs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mdp-specs-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mdp-thumbs {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+  }
+
+  .mdp-breadcrumb { 
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.25); 
+  }
+
+  .mdp-cta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mdp-hero-cat {
+    margin-bottom: 0rem;
+  }
+
+  .mdp-hero-name {
+    font-size: clamp(1.8rem, 6vw, 5.5rem);
+    margin-bottom: 0rem;
+  }
+
+  .mdp-hero-tagline {
+    font-size: 0.7rem;
+  }
+
+  .mdp-arrow {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+
+  .mdp-counter {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+
+  .mdp-hero-controls .mdp-dots {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mdp-body { 
+    padding: 0 4%; 
+  }
+  
+  .mdp-back-bar { 
+    padding: 0.85rem 4%; 
+  }
+
+  .mdp-hero-track {
+    min-height: 220px;
+  }
+
+  .mdp-hero-content {
+    padding: 0.8rem 4% 0.8rem;
+  }
+
+  .mdp-key-specs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mdp-specs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mdp-thumbs {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+  }
+
+  .mdp-breadcrumb { 
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.25); 
+  }
+
+  .mdp-back-btn{
+    font-size: 0.5rem;
+  }
+
+  .mdp-cta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mdp-arrow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .mdp-hero-cat {
+    font-size: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .mdp-hero-name {
+    font-size: clamp(1rem, 6vw, 5.5rem);
+    margin-bottom: 0;
+  }
+
+  .mdp-hero-tagline {
+    font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .mdp-hero-track {
+    min-height: 160px;
+  }
+
+  .mdp-hero-content {
+    padding: 0.5rem 4% 0.5rem;
+  }
+
+  .mdp-hero-cat {
+    font-size: 0.45rem;
+    letter-spacing: 2px;
+  }
+
+  .mdp-hero-name {
+    font-size: clamp(0.85rem, 5vw, 1.2rem);
+    line-height: 1;
+  }
+
+  .mdp-hero-tagline {
+    font-size: 0.42rem;
+  }
+
+  .mdp-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  .mdp-counter {
+    font-size: 0.65rem;
+  }
+
+  .mdp-back-bar {
+    padding: 0.6rem 4%;
+  }
+}

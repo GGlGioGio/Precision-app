@@ -1,30 +1,5 @@
 .mdp-hero {
   position: relative;
-  height: 100vh;
-  min-height: 640px;
-  overflow: hidden;
-  background: var(--black);
-  isolation: isolate;
-}
-
-.mdp-hero-track {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  will-change: transform;
-}
-
-.mdp-hero-slide {
-  flex: 0 0 100%;
-  width: 100%;
-  height: 100%;
-}
-
-.mdp-hero {
-  position: relative;
   height: auto;
   min-height: initial;
   overflow: hidden;
@@ -35,8 +10,11 @@
 }
 
 .mdp-hero-track {
+  top: 0;
+  left: 0;
   position: relative;
   width: 100%;
+  height: 100%;
   display: flex;
   will-change: transform;
 }
@@ -45,6 +23,7 @@
   flex: 0 0 100%;
   width: 100%;
   position: relative;
+  height: 100%;
   background: var(--black);
 }
 
@@ -60,29 +39,13 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0,0,0,0.2) 0%,
-    rgba(0,0,0,0.0) 40%,
-    rgba(0,0,0,0.6) 80%,
-    rgba(0,0,0,0.95) 100%
+    rgba(0,0,0,0.18) 0%,
+    rgba(0,0,0,0.08) 40%,
+    rgba(0,0,0,0.72) 80%,
+    rgba(0,0,0,0.92) 100%
   );
   z-index: 2;
   pointer-events: none;
-}
-
-.mdp-hero-content {
-  position: relative;
-  bottom: initial;
-  left: initial;
-  right: initial;
-  z-index: 3;
-  padding: 2.5rem 6% 3rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 2.5rem;
-  width: 100%;
-  box-sizing: border-box;
-  background: rgba(0,0,0,0);
 }
 
 .mdp-hero-text {
@@ -91,125 +54,14 @@
 }
 
 .mdp-hero-controls {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
-  flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-  .mdp-hero {
-    height: auto !important;
-    min-height: initial;
-    display: flex;
-    flex-direction: column;
-    background: var(--black);
-  }
-
-  .mdp-hero-track {
-    position: relative;
-    min-height: 280px;
-  }
-
-  .mdp-hero-slide img {
-    width: 100%;
-    object-fit: contain;
-    display: block;
-  }
-
-  .mdp-hero-content {
-    position: relative;
-    bottom: initial;
-    left: initial;
-    right: initial;
-    padding: 2.5rem 6% 3rem;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2.5rem;
-    width: 100%;
-    box-sizing: border-box;
-    background: rgba(0, 0, 0, 0);
-  }
-
-  .mdp-hero-text {
-    width: 100%;
-  }
-
-  .mdp-hero-controls {
-    display: flex;
-    flex-direction: row !important;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .mdp-hero-controls .mdp-dots {
-    display: none !important;
-  }
-
-  .mdp-counter {
-    margin: 0;
-    font-size: 0.8rem;
-  }
-
-  .mdp-nav-arrows {
-    display: flex;
-    gap: 0.5rem;
-    margin-left: auto;
-  }
-}
-
-@media (max-width: 480px) {
-  .mdp-body { 
-    padding: 0 4%; 
-  }
-  
-  .mdp-back-bar { 
-    padding: 0.85rem 4%; 
-  }
-
-  .mdp-hero-content { 
-    padding: 2rem 5% 2.5rem; 
-  }
-
-  .mdp-specs-grid { 
-    grid-template-columns: 1fr; 
-  }
-
-  .mdp-thumbs {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.3rem;
-  }
-}
-
-.mdp-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.18) 0%,
-    rgba(0,0,0,0.08) 40%,
-    rgba(0,0,0,0.72) 80%,
-    rgba(0,0,0,0.92) 100%
-  );
-  z-index: 2;
-}
-
-.mdp-hero-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  padding: 0 6% 4rem;
   display: flex;
+  flex-direction: column;
   align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem;
+  gap: 1.2rem;
+  flex-shrink: 0;
 }
 
 .mdp-hero-cat {
@@ -230,19 +82,27 @@
   margin-bottom: 0.9rem;
 }
 
+.mdp-hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 0 6% 0.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0);
+}
+
 .mdp-hero-tagline {
   font-size: 0.9rem;
   color: var(--silver);
   letter-spacing: 1.5px;
   font-style: italic;
-}
-
-.mdp-hero-controls {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1.2rem;
-  flex-shrink: 0;
 }
 
 .mdp-nav-arrows {
@@ -541,124 +401,4 @@
 .mdp-cta-sub {
   font-size: 0.9rem;
   color: var(--silver);
-}
-
-@media (max-width: 1024px) {
-  .mdp-overview {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    padding: 4rem 0;
-  }
-
-  .mdp-specs-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .mdp-thumbs {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .mdp-hero-content {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-bottom: 0.5rem;
-    gap: 1.5rem;
-  }
-
-  .mdp-hero-controls {
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .mdp-key-specs {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .mdp-specs-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .mdp-thumbs {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.4rem;
-  }
-
-  .mdp-breadcrumb { display: none; }
-
-  .mdp-cta-strip {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-    .mdp-hero-cat{
-    margin-bottom: 0rem;
-  }
-
-  .mdp-hero-name{
-    font-size: clamp(1.8rem, 6vw, 5.5rem);
-    margin-bottom: 0rem;
-  }
-
-  .mdp-hero-tagline{
-    font-size: 0.7rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .mdp-hero-content {
-    flex-direction: column;
-    align-items: flex-start;
-    padding-bottom: 0.5rem;
-    gap: 1.5rem;
-  }
-
-  .mdp-hero-controls {
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .mdp-key-specs {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .mdp-specs-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .mdp-thumbs {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.4rem;
-  }
-
-  .mdp-breadcrumb { display: none; }
-
-  .mdp-cta-strip {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .mdp-arrow{
-    width: 35px;
-    height: 35px;
-  }
-
-  .mdp-hero-cat{
-    font-size: 0.5rem;
-    margin-bottom: 0rem;
-  }
-
-  .mdp-hero-name{
-    font-size: clamp(1rem, 6vw, 5.5rem);
-    margin-bottom: 0rem;
-  }
-
-  .mdp-hero-tagline{
-    font-size: 0.5rem;
-  }
 }

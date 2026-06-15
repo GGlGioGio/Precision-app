@@ -98,12 +98,6 @@ a { color: inherit; text-decoration: none; }
 
 .hamburger {
   display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
 }
 
 .hamburger span {
@@ -1060,6 +1054,8 @@ a { color: inherit; text-decoration: none; }
   .modal-name { font-size: 2rem; }
   .cov-card { width: 230px; }
   .cov-img-wrap { height: 148px; }
+  .modal-gallery { height: 280px; }
+  .mg-arrow { width: 34px; height: 34px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1147,9 +1143,4 @@ a { color: inherit; text-decoration: none; }
 .mg-dot.active {
   background: var(--red);
   width: 22px;
-}
-
-@media (max-width: 480px) {
-  .modal-gallery { height: 280px; }
-  .mg-arrow { width: 34px; height: 34px; }
 }
