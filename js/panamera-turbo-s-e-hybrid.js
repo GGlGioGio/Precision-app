@@ -56,8 +56,12 @@
   document.getElementById('mdpNext').addEventListener('click', () => goTo(current + 1));
 
   thumbs.forEach(t => {
-    t.addEventListener('click', () => goTo(parseInt(t.dataset.index)));
+  t.addEventListener('click', () => {
+    goTo(parseInt(t.dataset.index));
+    
+    heroEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
+});
 
   let touchStartX = 0, touchStartY = 0;
 
@@ -89,9 +93,8 @@
 
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 0);
+    navbar.classList.toggle('scrolled', window.scrollY > 80);
   });
-  navbar.classList.add('scrolled');
 
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
