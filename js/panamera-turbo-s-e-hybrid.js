@@ -49,6 +49,7 @@
   document.getElementById('mdpPrev').addEventListener('click', () => goTo(current - 1));
   document.getElementById('mdpNext').addEventListener('click', () => goTo(current + 1));
 
+  // FIX 1: убран goTo() — экран больше не прыгает вверх при клике на превью
   thumbs.forEach(t => {
     t.addEventListener('click', () => {
       const idx = parseInt(t.dataset.index);
@@ -67,70 +68,85 @@
   let lightboxIndex = 0;
   let lightboxOpen = false;
   let scrollYBeforeLock = 0;
+  let lbIsAnimating = false;
 
+  // FIX 2: анимация без мерцания черным — два клона поверх реального img
   function setLightboxImage(index, animate, direction) {
-    const prevIndex = lightboxIndex;
     lightboxIndex = ((index % total) + total) % total;
-    const src = images[lightboxIndex];
-    const altSource = track.querySelectorAll('.mdp-hero-slide img')[lightboxIndex];
+    const src    = images[lightboxIndex];
+    const slides = track.querySelectorAll('.mdp-hero-slide img');
+    const alt    = slides[lightboxIndex] ? slides[lightboxIndex].alt : '';
 
-    lightboxCounter.textContent = String(lightboxIndex + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    lightboxCounter.textContent =
+      String(lightboxIndex + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
 
     if (!animate) {
       lightboxImg.src = src;
-      lightboxImg.alt = altSource ? altSource.alt : '';
+      lightboxImg.alt = alt;
       return;
     }
 
-    // Slide direction: 1 = next (slide left), -1 = prev (slide right)
-    const dir = direction || 1;
+    if (lbIsAnimating) return;
+    lbIsAnimating = true;
+
+    const dir  = direction || 1;
     const wrap = lightboxImg.parentElement;
 
-    // Create incoming image element
+    // Фиксируем размер контейнера чтобы не было layout shift
+    const vw = wrap.offsetWidth  || 800;
+    const vh = wrap.offsetHeight || 600;
+    Object.assign(wrap.style, {
+      position: 'relative',
+      overflow: 'hidden',
+      width:    vw + 'px',
+      height:   vh + 'px',
+    });
+
+    const baseStyle = {
+      position: 'absolute', inset: '0', margin: 'auto',
+      maxWidth: '100%', maxHeight: '100%',
+      width: 'auto', height: 'auto', objectFit: 'contain',
+      transition: 'none', willChange: 'transform',
+    };
+
+    // Клон уходящего фото — вставляем под incoming, закрывает чёрный фон
+    const outgoing = document.createElement('img');
+    outgoing.src = lightboxImg.src;
+    outgoing.alt = lightboxImg.alt;
+    Object.assign(outgoing.style, { ...baseStyle, transform: 'translateX(0)' });
+    wrap.insertBefore(outgoing, lightboxImg);
+
+    // Скрываем реальный img (за клонами)
+    lightboxImg.style.visibility = 'hidden';
+
+    // Входящее фото — начинает за экраном
     const incoming = document.createElement('img');
-    incoming.className = 'mdp-lightbox-img';
     incoming.src = src;
-    incoming.alt = altSource ? altSource.alt : '';
-    incoming.style.cssText = `
-      position: absolute;
-      max-width: 100%;
-      max-height: 85vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      transform: translateX(${dir * 100}%);
-      transition: transform 0.55s cubic-bezier(0.34, 0.9, 0.34, 1), opacity 0.55s ease;
-      opacity: 0;
-    `;
+    incoming.alt = alt;
+    Object.assign(incoming.style, { ...baseStyle, transform: `translateX(${dir * 100}%)` });
     wrap.appendChild(incoming);
 
-    // Animate current image out
-    lightboxImg.style.cssText = `
-      max-width: 100%;
-      max-height: 85vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      transition: transform 0.55s cubic-bezier(0.34, 0.9, 0.34, 1), opacity 0.55s ease;
-      transform: translateX(0);
-      opacity: 1;
-    `;
-
+    // Запускаем анимацию
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        lightboxImg.style.transform = `translateX(${dir * -100}%)`;
-        lightboxImg.style.opacity = '0';
-        incoming.style.transform = 'translateX(0)';
-        incoming.style.opacity = '1';
+        const ease = 'transform 0.6s cubic-bezier(0.34, 0.9, 0.34, 1)';
+        outgoing.style.transition = ease;
+        incoming.style.transition = ease;
+        outgoing.style.transform  = `translateX(${dir * -100}%)`;
+        incoming.style.transform  = 'translateX(0)';
       });
     });
 
+    // Cleanup — меняем src реального img, убираем клоны
     setTimeout(() => {
-      lightboxImg.src = src;
-      lightboxImg.alt = altSource ? altSource.alt : '';
-      lightboxImg.style.cssText = '';
+      lightboxImg.src              = src;
+      lightboxImg.alt              = alt;
+      lightboxImg.style.visibility = '';
+      if (outgoing.parentElement) wrap.removeChild(outgoing);
       if (incoming.parentElement) wrap.removeChild(incoming);
-    }, 580);
+      wrap.style.cssText = '';
+      lbIsAnimating = false;
+    }, 660);
   }
 
 function lockScroll() {
@@ -170,7 +186,6 @@ function lockScroll() {
   lightboxOverlay.addEventListener('click', closeLightbox);
   lightboxPrev.addEventListener('click', () => lightboxGoTo(lightboxIndex - 1));
   lightboxNext.addEventListener('click', () => lightboxGoTo(lightboxIndex + 1));
-
 
   document.addEventListener('keydown', e => {
     if (!lightboxOpen) return;
