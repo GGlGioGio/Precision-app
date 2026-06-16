@@ -32,6 +32,7 @@
   height: auto;
   object-fit: contain;
   display: block;
+  cursor: zoom-in;
 }
 
 .mdp-hero-overlay {
@@ -350,7 +351,7 @@
 }
 
 .mdp-gallery-section {
-  padding: 5rem 0;
+  padding: 3rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
@@ -401,4 +402,198 @@
 .mdp-cta-sub {
   font-size: 0.9rem;
   color: var(--silver);
+}
+
+/* ============ Lightbox / Gallery Preview ============ */
+
+.mdp-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mdp-lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mdp-lightbox-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 4, 4, 0.94);
+  backdrop-filter: blur(4px);
+  cursor: zoom-out;
+}
+
+.mdp-lightbox-stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 6rem;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.mdp-lightbox-img-wrap {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.mdp-lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.mdp-lightbox.open .mdp-lightbox-img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mdp-lightbox-img.is-switching {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+.mdp-lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 5;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(8px);
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  font-weight: 300;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+  pointer-events: auto;
+}
+
+.mdp-lightbox-close:hover {
+  border-color: var(--red);
+  background: rgba(200, 0, 28, 0.15);
+  transform: rotate(90deg);
+}
+
+.mdp-lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(8px);
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--transition), background var(--transition);
+  pointer-events: auto;
+}
+
+.mdp-lightbox-arrow:hover {
+  border-color: var(--red);
+  background: rgba(200, 0, 28, 0.15);
+}
+
+.mdp-lightbox-prev { left: 1.5rem; }
+.mdp-lightbox-next { right: 1.5rem; }
+
+.mdp-lightbox-counter {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: var(--silver);
+  pointer-events: none;
+}
+
+body.mdp-lightbox-active {
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .mdp-lightbox-stage {
+    padding: 4rem 1rem;
+  }
+
+  .mdp-lightbox-img {
+    max-height: 75vh;
+  }
+
+  .mdp-lightbox-close {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
+
+  .mdp-lightbox-arrow {
+    width: 44px;
+    height: 44px;
+  }
+
+  .mdp-lightbox-prev { left: 0.6rem; }
+  .mdp-lightbox-next { right: 0.6rem; }
+
+  .mdp-lightbox-counter {
+    bottom: 1.2rem;
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mdp-lightbox-stage {
+    padding: 3.5rem 0.5rem;
+  }
+
+  .mdp-lightbox-arrow {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mdp-lightbox,
+  .mdp-lightbox-img {
+    transition-duration: 0.01ms !important;
+  }
 }
