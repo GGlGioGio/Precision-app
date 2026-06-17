@@ -111,6 +111,10 @@ document.addEventListener('click', e => {
     window.location.href = 'Car_Models/taycan-turbo-s.html';
     return;
   }
+  if (modelId === '911 GT3 (992.2)') {
+    window.location.href = 'Car_Models/911_GT3_(992.2).html';
+    return;
+  }
   openModal(modelId);
 });
 
