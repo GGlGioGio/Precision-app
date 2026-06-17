@@ -30,7 +30,6 @@
   </ul>
 </nav>
 
-
 <section class="mdp-hero" id="mdpHero">
   <div class="mdp-hero-track" id="mdpTrack">
     <div class="mdp-hero-slide">
@@ -90,12 +89,12 @@
     <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     Back to Models
   </a>
-  <span class="mdp-breadcrumb">Models / <span>Panamera Turbo S E-Hybrid</span></span>
+  <span class="mdp-breadcrumb">Models / <span>Taycan Turbo S</span></span>
 </div>
 
 <main class="mdp-body">
 
-  <div class="mdp-gallery-section">
+   <div class="mdp-gallery-section">
     <div class="mdp-section-header">
       <h2 class="mdp-section-title">GALLERY</h2>
     </div>
@@ -243,6 +242,23 @@
     </div>
   </div>
 </footer>
+
+<div class="mdp-lightbox" id="mdpLightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <div class="mdp-lightbox-overlay" id="mdpLightboxOverlay"></div>
+  <button class="mdp-lightbox-close" id="mdpLightboxClose" aria-label="Close preview">&times;</button>
+  <button class="mdp-lightbox-arrow mdp-lightbox-prev" id="mdpLightboxPrev" aria-label="Previous image">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="mdp-lightbox-arrow mdp-lightbox-next" id="mdpLightboxNext" aria-label="Next image">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="mdp-lightbox-stage">
+    <div class="mdp-lightbox-img-wrap">
+      <img class="mdp-lightbox-img" id="mdpLightboxImg" src="" alt="">
+    </div>
+  </div>
+  <span class="mdp-lightbox-counter" id="mdpLightboxCounter"></span>
+</div>
 
 <script src="../js/taycan-turbo-s.js"></script>
 </body>

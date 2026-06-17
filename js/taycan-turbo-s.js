@@ -1,23 +1,17 @@
 (function () {
-  const images = [
-    'Assets/images/2024_Porsche_Taycan_Turbo_S_2024/2024_Porsche_Taycan_Turbo_S_Front.jpg',
-    'Assets/images/2024_Porsche_Taycan_Turbo_S_2024/2024_Porsche_Taycan_Turbo_S_Back.jpg',
-    'Assets/images/2024_Porsche_Taycan_Turbo_S_2024/2024_Porsche_Taycan_Turbo_S_Inside.jpg',
-    'Assets/images/2024_Porsche_Taycan_Turbo_S_2024/2024_Porsche_Taycan_Turbo_S_Left_Back.jpg',
-    'Assets/images/2024_Porsche_Taycan_Turbo_S_2024/2024_Porsche_Taycan_Turbo_S_Tire.jpg',
-    'Assets/images/2024_Porsche_Taycan_Turbo_S_2024/2024_Porsche_Taycan_Turbo_S_Straight.jpg',
-    'Assets/images/2024_Porsche_Taycan_Turbo_S_2024/2024_Porsche_Taycan_Turbo_S_Writing.jpg'
-  ];
-
-  const total = images.length;
-  let current = 0;
-  let isTransitioning = false;
-
   const track = document.getElementById('mdpTrack');
   const counter = document.getElementById('mdpCounter');
   const dotsContainer = document.getElementById('mdpDots');
   const thumbsContainer = document.getElementById('mdpThumbs');
   const thumbs = thumbsContainer.querySelectorAll('.mdp-thumb');
+
+  const images = Array.from(
+    track.querySelectorAll('.mdp-hero-slide img')
+  ).map(img => img.src);
+
+  const total = images.length;
+  let current = 0;
+  let isTransitioning = false;
 
   track.style.transition = 'transform 0.8s cubic-bezier(0.34, 0.9, 0.34, 1)';
 
@@ -55,12 +49,155 @@
   document.getElementById('mdpNext').addEventListener('click', () => goTo(current + 1));
 
   thumbs.forEach(t => {
-  t.addEventListener('click', () => {
-    goTo(parseInt(t.dataset.index));
-    
-    heroEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    t.addEventListener('click', () => {
+      const idx = parseInt(t.dataset.index);
+      openLightbox(idx);
+    });
   });
-});
+
+  const lightbox = document.getElementById('mdpLightbox');
+  const lightboxOverlay = document.getElementById('mdpLightboxOverlay');
+  const lightboxImg = document.getElementById('mdpLightboxImg');
+  const lightboxClose = document.getElementById('mdpLightboxClose');
+  const lightboxPrev = document.getElementById('mdpLightboxPrev');
+  const lightboxNext = document.getElementById('mdpLightboxNext');
+  const lightboxCounter = document.getElementById('mdpLightboxCounter');
+
+  let lightboxIndex = 0;
+  let lightboxOpen = false;
+  let scrollYBeforeLock = 0;
+  let lbIsAnimating = false;
+
+  function setLightboxImage(index, animate, direction) {
+    lightboxIndex = ((index % total) + total) % total;
+    const src    = images[lightboxIndex];
+    const slides = track.querySelectorAll('.mdp-hero-slide img');
+    const alt    = slides[lightboxIndex] ? slides[lightboxIndex].alt : '';
+
+    lightboxCounter.textContent =
+      String(lightboxIndex + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+
+    if (!animate) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      return;
+    }
+
+    if (lbIsAnimating) return;
+    lbIsAnimating = true;
+
+    const dir  = direction || 1;
+    const wrap = lightboxImg.parentElement;
+
+    const vw = wrap.offsetWidth  || 800;
+    const vh = wrap.offsetHeight || 600;
+    Object.assign(wrap.style, {
+      position: 'relative',
+      overflow: 'hidden',
+      width:    vw + 'px',
+      height:   vh + 'px',
+    });
+
+    const baseStyle = {
+      position: 'absolute', inset: '0', margin: 'auto',
+      maxWidth: '100%', maxHeight: '100%',
+      width: 'auto', height: 'auto', objectFit: 'contain',
+      transition: 'none', willChange: 'transform',
+    };
+
+    const outgoing = document.createElement('img');
+    outgoing.src = lightboxImg.src;
+    outgoing.alt = lightboxImg.alt;
+    Object.assign(outgoing.style, { ...baseStyle, transform: 'translateX(0)' });
+    wrap.insertBefore(outgoing, lightboxImg);
+
+    lightboxImg.style.visibility = 'hidden';
+
+    const incoming = document.createElement('img');
+    incoming.src = src;
+    incoming.alt = alt;
+    Object.assign(incoming.style, { ...baseStyle, transform: `translateX(${dir * 100}%)` });
+    wrap.appendChild(incoming);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const ease = 'transform 0.6s cubic-bezier(0.34, 0.9, 0.34, 1)';
+        outgoing.style.transition = ease;
+        incoming.style.transition = ease;
+        outgoing.style.transform  = `translateX(${dir * -100}%)`;
+        incoming.style.transform  = 'translateX(0)';
+      });
+    });
+
+    setTimeout(() => {
+      lightboxImg.src              = src;
+      lightboxImg.alt              = alt;
+      lightboxImg.style.visibility = '';
+      if (outgoing.parentElement) wrap.removeChild(outgoing);
+      if (incoming.parentElement) wrap.removeChild(incoming);
+      wrap.style.cssText = '';
+      lbIsAnimating = false;
+    }, 660);
+  }
+
+function lockScroll() {
+    document.body.classList.add('mdp-lightbox-active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function unlockScroll() {
+    document.body.classList.remove('mdp-lightbox-active');
+    document.body.style.overflow = '';
+  }
+
+  function openLightbox(index) {
+    setLightboxImage(index, false);
+    lightbox.classList.add('open');
+    lightboxOpen = true;
+    lockScroll();
+  }
+
+  function closeLightbox() {
+    if (!lightboxOpen) return;
+    lightbox.classList.remove('open');
+    lightboxOpen = false;
+    unlockScroll();
+  }
+
+  function lightboxGoTo(index) {
+    const dir = index > lightboxIndex ? 1 : -1;
+    setLightboxImage(index, true, dir);
+  }
+
+  track.querySelectorAll('.mdp-hero-slide img').forEach((img, i) => {
+    img.addEventListener('click', () => openLightbox(i));
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxOverlay.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', () => lightboxGoTo(lightboxIndex - 1));
+  lightboxNext.addEventListener('click', () => lightboxGoTo(lightboxIndex + 1));
+
+  document.addEventListener('keydown', e => {
+    if (!lightboxOpen) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lightboxGoTo(lightboxIndex - 1);
+    if (e.key === 'ArrowRight') lightboxGoTo(lightboxIndex + 1);
+  });
+
+  let lbTouchStartX = 0, lbTouchStartY = 0;
+
+  lightbox.addEventListener('touchstart', e => {
+    lbTouchStartX = e.touches[0].clientX;
+    lbTouchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', e => {
+    if (!lightboxOpen) return;
+    const dx = lbTouchStartX - e.changedTouches[0].clientX;
+    const dy = Math.abs(lbTouchStartY - e.changedTouches[0].clientY);
+    if (Math.abs(dx) > 40 && dy < 60) lightboxGoTo(lightboxIndex + (dx > 0 ? 1 : -1));
+  });
 
   let touchStartX = 0, touchStartY = 0;
 
@@ -76,6 +213,7 @@
   });
 
   document.addEventListener('keydown', e => {
+    if (lightboxOpen) return;
     if (e.key === 'ArrowLeft') goTo(current - 1);
     if (e.key === 'ArrowRight') goTo(current + 1);
   });

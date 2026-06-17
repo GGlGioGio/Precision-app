@@ -230,7 +230,7 @@
       <div class="contact-details">
         <div class="contact-detail-item">
           <span class="detail-label">Phone</span>
-          <span>+1 800 PORSCHE</span>
+          <span>+357 97979797</span>
         </div>
         <div class="contact-detail-item">
           <span class="detail-label">Email</span>
@@ -238,29 +238,33 @@
         </div>
         <div class="contact-detail-item">
           <span class="detail-label">Hours</span>
-          <span>Mon–Sat, 9am–7pm</span>
+          <span>Mon–Sat, 9:00–18:00</span>
         </div>
       </div>
     </div>
     <div class="contact-form-wrap">
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm" novalidate>
         <div class="form-row">
           <div class="form-field">
             <label>First Name</label>
-            <input type="text" placeholder="John" required>
+            <input type="text" placeholder="John" autocomplete="given-name">
+            <p class="form-error" aria-live="polite"></p>
           </div>
           <div class="form-field">
             <label>Last Name</label>
-            <input type="text" placeholder="Doe" required>
+            <input type="text" placeholder="Doe" autocomplete="family-name">
+            <p class="form-error" aria-live="polite"></p>
           </div>
         </div>
         <div class="form-field">
           <label>Email Address</label>
-          <input type="email" placeholder="john@example.com" required>
+          <input type="email" placeholder="john@example.com" autocomplete="email">
+          <p class="form-error" aria-live="polite"></p>
         </div>
         <div class="form-field">
           <label>Phone Number</label>
-          <input type="tel" placeholder="+1 (555) 000-0000">
+          <input type="tel" placeholder="+357 97979797" autocomplete="tel">
+          <p class="form-error" aria-live="polite"></p>
         </div>
         <div class="form-field">
           <label>Preferred Model</label>
@@ -269,14 +273,17 @@
             <option>Panamera Turbo S E-Hybrid</option>
             <option>Taycan Turbo S</option>
           </select>
+          <p class="form-error" aria-live="polite"></p>
         </div>
         <div class="form-field">
           <label>Preferred Date</label>
           <input type="date">
+          <p class="form-error" aria-live="polite"></p>
         </div>
         <div class="form-field">
           <label>Message (Optional)</label>
-          <textarea placeholder="Tell us anything special about your visit..." rows="3"></textarea>
+          <textarea placeholder="Tell us anything special about your visit..." rows="3" maxlength="500"></textarea>
+          <p class="form-error" aria-live="polite"></p>
         </div>
         <button type="submit" class="btn-primary full-width">Confirm Booking</button>
       </form>
@@ -294,17 +301,17 @@
 
       <div class="footer-col">
         <span class="footer-col-title">Company</span>
-        <a href="#heritage">Heritage</a>
         <a href="#performance">Performance</a>
+        <a href="#heritage">Heritage</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="footer-col">
         <span class="footer-col-title">Follow</span>
-        <a href="#">Instagram</a>
-        <a href="#">Twitter / X</a>
-        <a href="#">YouTube</a>
-        <a href="#">LinkedIn</a>
+        <a href="https://www.instagram.com">Instagram</a>
+        <a href="https://x.com">Twitter / X</a>
+        <a href="https://youtube.com">YouTube</a>
+        <a href="https://www.linkedin.com/in/giorgikhelaia/">LinkedIn</a>
       </div>
     </div>
   </div>

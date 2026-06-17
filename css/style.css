@@ -1144,3 +1144,21 @@ a { color: inherit; text-decoration: none; }
   background: var(--red);
   width: 22px;
 }
+
+.contact-form textarea {
+  resize: vertical;
+  max-height: 500px;
+}
+
+.form-error {
+  font-size: 0.72rem;
+  color: #e8394f;
+  letter-spacing: 0.5px;
+  margin-top: 0.35rem;
+  min-height: 1em;
+  line-height: 1.4;
+}
+
+.form-field .input-error {
+  border-color: #e8394f !important;
+}

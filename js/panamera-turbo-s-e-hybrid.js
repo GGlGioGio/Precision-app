@@ -5,7 +5,6 @@
   const thumbsContainer = document.getElementById('mdpThumbs');
   const thumbs = thumbsContainer.querySelectorAll('.mdp-thumb');
 
-  // Берём пути прямо из <img> в слайдере — так пути всегда совпадают с HTML
   const images = Array.from(
     track.querySelectorAll('.mdp-hero-slide img')
   ).map(img => img.src);
@@ -49,7 +48,6 @@
   document.getElementById('mdpPrev').addEventListener('click', () => goTo(current - 1));
   document.getElementById('mdpNext').addEventListener('click', () => goTo(current + 1));
 
-  // FIX 1: убран goTo() — экран больше не прыгает вверх при клике на превью
   thumbs.forEach(t => {
     t.addEventListener('click', () => {
       const idx = parseInt(t.dataset.index);
@@ -70,7 +68,6 @@
   let scrollYBeforeLock = 0;
   let lbIsAnimating = false;
 
-  // FIX 2: анимация без мерцания черным — два клона поверх реального img
   function setLightboxImage(index, animate, direction) {
     lightboxIndex = ((index % total) + total) % total;
     const src    = images[lightboxIndex];
@@ -92,7 +89,6 @@
     const dir  = direction || 1;
     const wrap = lightboxImg.parentElement;
 
-    // Фиксируем размер контейнера чтобы не было layout shift
     const vw = wrap.offsetWidth  || 800;
     const vh = wrap.offsetHeight || 600;
     Object.assign(wrap.style, {
@@ -109,24 +105,20 @@
       transition: 'none', willChange: 'transform',
     };
 
-    // Клон уходящего фото — вставляем под incoming, закрывает чёрный фон
     const outgoing = document.createElement('img');
     outgoing.src = lightboxImg.src;
     outgoing.alt = lightboxImg.alt;
     Object.assign(outgoing.style, { ...baseStyle, transform: 'translateX(0)' });
     wrap.insertBefore(outgoing, lightboxImg);
 
-    // Скрываем реальный img (за клонами)
     lightboxImg.style.visibility = 'hidden';
 
-    // Входящее фото — начинает за экраном
     const incoming = document.createElement('img');
     incoming.src = src;
     incoming.alt = alt;
     Object.assign(incoming.style, { ...baseStyle, transform: `translateX(${dir * 100}%)` });
     wrap.appendChild(incoming);
 
-    // Запускаем анимацию
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         const ease = 'transform 0.6s cubic-bezier(0.34, 0.9, 0.34, 1)';
@@ -137,7 +129,6 @@
       });
     });
 
-    // Cleanup — меняем src реального img, убираем клоны
     setTimeout(() => {
       lightboxImg.src              = src;
       lightboxImg.alt              = alt;
