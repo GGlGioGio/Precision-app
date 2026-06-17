@@ -209,7 +209,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5rem;
-  padding: 6rem 0;
+  padding: 3rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
@@ -293,12 +293,12 @@
 }
 
 .mdp-specs-section {
-  padding: 5rem 0;
+  padding: 3rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 .mdp-section-header {
-  margin-bottom: 3.5rem;
+  margin-bottom: 1rem;
 }
 
 .mdp-section-eyebrow {
@@ -359,7 +359,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.75rem;
-  margin-top: 2.5rem;
+  margin-top: 1rem;
 }
 
 .mdp-thumb {
@@ -384,7 +384,7 @@
 .mdp-thumb:hover img { transform: scale(1.06); }
 
 .mdp-cta-strip {
-  padding: 5rem 0 6rem;
+  padding: 3rem 0 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
