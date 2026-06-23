@@ -1,7 +1,6 @@
 (function () {
 
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
   const PHONE_RE = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?([-\s\.]?[0-9]{1,9}){1,6}$/;
 
   function showError(field, msg) {
@@ -35,7 +34,6 @@
   }
 
   function validateField(field) {
-    const name  = field.name || field.id || field.getAttribute('data-name') || '';
     const value = field.value;
     const tag   = field.tagName.toLowerCase();
 

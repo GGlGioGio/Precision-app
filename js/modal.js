@@ -91,10 +91,6 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-function closeModalOnOverlay(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
-
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
 });
