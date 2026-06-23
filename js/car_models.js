@@ -65,7 +65,6 @@
 
   let lightboxIndex = 0;
   let lightboxOpen = false;
-  let scrollYBeforeLock = 0;
   let lbIsAnimating = false;
 
   function setLightboxImage(index, animate, direction) {

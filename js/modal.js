@@ -117,6 +117,3 @@ document.addEventListener('click', e => {
   }
   openModal(modelId);
 });
-
-document.getElementById('modalOverlay').addEventListener('click', closeModalOnOverlay);
-document.getElementById('modalClose').addEventListener('click', closeModal);
